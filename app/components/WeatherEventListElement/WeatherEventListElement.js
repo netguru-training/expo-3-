@@ -1,8 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import CurrentWeatherInfo from '../CurrentWeatherInfo/CurrentWeatherInfo'
 import styles from './WeatherEventListElement.styles'
+import { fetchDailyWeather } from '../../actions/weather'
 
 const {
   containerStyle,
@@ -12,54 +14,63 @@ const {
   plusStyle
 } = styles
 
-const WeatherEventListElement = ({
-  headerInfo,
-  imageUrl,
-  footerInfo,
-  eventsNumber,
-  onPressAdd
-}) => {
-  const eventsNumberInfo = eventsNumber > 0 ?
-    `You Have ${eventsNumber} events today` : 'You have no events today'
+class WeatherEventListElement extends React.PureComponent {
+  fetchData = () => this.props.fetchDailyWeather()
 
-  return (
-    <View
-      style={containerStyle}
-    >
-      <TouchableOpacity
-        style={currentWeatherEventContainerStyle}
-      >
-        <CurrentWeatherInfo
-          headerInfo={headerInfo}
-          imageUrl={imageUrl}
-          footerInfo={footerInfo}
-          rowDirection
-        />
-        <Text
-          style={currentEventsNumberStyle}
+  render() {
+    const { 
+      imageUrl,
+      eventsNumber,
+      headerInfo,
+      footerInfo,
+      onPressAdd
+    } = this.props;
+    const eventsNumberInfo = eventsNumber > 0 ?
+      `You Have ${eventsNumber} events today` : 'You have no events today'
+    
+    return (
+        <View
+          style={containerStyle}
         >
-          {eventsNumberInfo}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={addEventContainerStyle}
-        onPress={() => onPressAdd()}
-      >
-        <Text
-          style={plusStyle}
-        >
-          +
-        </Text>
-      </TouchableOpacity>
-    </View>
-  )
+          
+          <TouchableOpacity
+            style={currentWeatherEventContainerStyle}
+          >
+            <CurrentWeatherInfo
+              headerInfo={headerInfo}
+              imageUrl={imageUrl}
+              footerInfo={footerInfo}
+              rowDirection
+            />
+            <Text
+              style={currentEventsNumberStyle}
+            >
+              {eventsNumberInfo}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={addEventContainerStyle}
+            onPress={() => onPressAdd()}
+          >
+            <Text
+              style={plusStyle}
+            >
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+   }
 }
 
 WeatherEventListElement.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   eventsNumber: PropTypes.number,
   headerInfo: PropTypes.string,
-  footerInfo: PropTypes.string
+  footerInfo: PropTypes.string,
+
+  onPressAdd: PropTypes.func,
+  fetchDailyWeather: PropTypes.func.isRequired
 }
 
 WeatherEventListElement.defaultProps = {
@@ -68,4 +79,4 @@ WeatherEventListElement.defaultProps = {
   footerInfo: ''
 }
 
-export default WeatherEventListElement
+export default connect(null, { fetchDailyWeather })(WeatherEventListElement)
