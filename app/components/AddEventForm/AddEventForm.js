@@ -2,18 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { View, TextInput, Image, Alert, Button, Text } from 'react-native'
-import styles from './AddEventForm.styles'
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
+import styles from './AddEventForm.styles'
+import { addEvent } from '../../actions/events';
+
 const {
-  container,
-  eventTitleStyle,
-  eventTitleContainer, 
   textLabel
 } = styles
-
-
-
 
 class AddEventForm extends React.PureComponent {
   constructor(props){
@@ -37,10 +33,9 @@ class AddEventForm extends React.PureComponent {
     this.setState({ description })
   }
 
-
   onDoneButtonClick = () => {
     const { title, description } = this.state;
-    this.props.addEvent(title, description); 
+    this.props.addEvent(day, { title, description }); 
   }
 
   render() {
@@ -50,16 +45,14 @@ class AddEventForm extends React.PureComponent {
         
         <FormLabel>Title</FormLabel>
         <FormInput onChangeText={this.handleTitle} />
-        {/* <FormValidationMessage>{'This field is required'}</FormValidationMessage> */}
   
         <FormLabel>Description</FormLabel>
         <FormInput onChangeText={this.handleDescription} />
-        {/* <FormValidationMessage>{'This field is required'}</FormValidationMessage> */}
   
         <Button
           onPress={this.onDoneButtonClick}
           title="Done"
-          />
+        />
         
       </View>
     )
@@ -72,4 +65,4 @@ AddEventForm.propTypes = {
   addEvent: PropTypes.func.isRequired
 }
 
-export default connect(null, {})(AddEventForm);
+export default connect(null, { addEvent })(AddEventForm);

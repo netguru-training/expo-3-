@@ -17,7 +17,7 @@ const AddEventScreen = () => {
     <View
       style={containerStyle}
     >
-      <AddEventForm date='aaaa'/>
+      <AddEventForm date={new Date()}/>
     </View>
   )
 }
