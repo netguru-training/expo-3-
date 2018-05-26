@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import { apiData } from './apiData/reducer'
+import { weather } from './weather'
+import { events } from './events'
 
 export default combineReducers({
-  apiData
+  weather,
+  events
 })
