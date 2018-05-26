@@ -16,34 +16,41 @@ const {
 
 class WeatherEventListElement extends React.PureComponent {
   fetchData = () => this.props.fetchDailyWeather()
-  
+
   render() {
-    const { imageUrl,
+    const { 
+      imageUrl,
       eventsNumber,
       headerInfo,
-      footerInfo } = this.props;
+      footerInfo,
+      onPressAdd
+    } = this.props;
     const eventsNumberInfo = eventsNumber > 0 ?
       `You Have ${eventsNumber} events today` : 'You have no events today'
     
     return (
-      <View
-        style={containerStyle}
-      >
-        <TouchableOpacity
-          style={currentWeatherEventContainerStyle}
+        <View
+          style={containerStyle}
         >
+          
           <TouchableOpacity
             style={currentWeatherEventContainerStyle}
           >
-            {eventsNumberInfo}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={addEventContainerStyle}
-          onPress={() => onPressAdd()}
-        >
-          <Text
-            style={plusStyle}
+            <CurrentWeatherInfo
+              headerInfo={headerInfo}
+              imageUrl={imageUrl}
+              footerInfo={footerInfo}
+              rowDirection
+            />
+            <Text
+              style={currentEventsNumberStyle}
+            >
+              {eventsNumberInfo}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={addEventContainerStyle}
+            onPress={() => onPressAdd()}
           >
             <Text
               style={plusStyle}
@@ -62,6 +69,7 @@ WeatherEventListElement.propTypes = {
   headerInfo: PropTypes.string,
   footerInfo: PropTypes.string,
 
+  onPressAdd: PropTypes.func,
   fetchDailyWeather: PropTypes.func.isRequired
 }
 
