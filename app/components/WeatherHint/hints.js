@@ -16,7 +16,6 @@ const TEMP_THRESHOLD_COLD = -5, // [°C]
         
 
 export default function getHint( {description = '', temp = 0, wind = 0, snow = 0, precip = 0} ) {
-    const msgs = [];
     if (description.toLowerCase().includes('thunderstorm')) return HINTS.storms
     if (temp <= TEMP_THRESHOLD_COLD) return HINTS.cold
     if (temp >= TEMP_THRESHOLD_HOT) return HINTS.hot
