@@ -20,7 +20,7 @@ const AddEventScreen = () => {
         style={currentWeatherContainerStyle}
       >
         <CurrentWeatherInfo
-          headerInfo='Monday'
+          headerInfo='NO WAY'
           imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
           footerInfo='25 *C'
         />
