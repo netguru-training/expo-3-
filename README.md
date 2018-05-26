@@ -29,11 +29,7 @@ be sure your phone and computer are using the same wifi network
 ##### Running Tests
 1. Run project tests
 ```sh
-$ yarn test
-```
-2. Run eslint code syntax tests
-```sh
-$ yarn lint
+$ test
 ```
 ##### Code Style
 ESLint config - based on [Airbnb](https://github.com/airbnb/javascript) style guide, you can add few of your own rules in .eslintrc file
