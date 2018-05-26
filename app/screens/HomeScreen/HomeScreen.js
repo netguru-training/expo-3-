@@ -11,7 +11,7 @@ const {
   currentWeatherContainerStyle
 } = styles
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
   return (
     <View
       style={containerStyle}
@@ -32,6 +32,7 @@ const HomeScreen = () => {
           headerInfo='Tuesday'
           imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
           footerInfo='25 *C'
+          onPressAdd={() => props.navigation.navigate('AddEvent')}
         />
       </View>
     </View>

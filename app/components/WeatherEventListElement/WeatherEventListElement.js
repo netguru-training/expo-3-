@@ -16,7 +16,8 @@ const WeatherEventListElement = ({
   headerInfo,
   imageUrl,
   footerInfo,
-  eventsNumber
+  eventsNumber,
+  onPressAdd
 }) => {
   const eventsNumberInfo = eventsNumber > 0 ?
     `You Have ${eventsNumber} events today` : 'You have no events today'
@@ -42,6 +43,7 @@ const WeatherEventListElement = ({
       </TouchableOpacity>
       <TouchableOpacity
         style={addEventContainerStyle}
+        onPress={() => onPressAdd()}
       >
         <Text
           style={plusStyle}
