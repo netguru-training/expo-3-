@@ -4,7 +4,7 @@ import {
   CurrentWeatherInfo,
   WeatherEventListElement
 } from '../../components'
-import styles from './AddEventScreen.styles'
+import styles from './EventInfoScreen.styles'
 
 const {
   containerStyle,
