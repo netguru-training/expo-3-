@@ -11,29 +11,21 @@ $ brew install watchman
 ##### Instalation
 1. Clone the repo:
 ```sh
-$ git clone git@github.com:netguru/rn-workshops-26.05.git
-$ cd rn-workshops-26.05.git
+$ git clone git@github.com:netguru-training/expo-3-.git
+$ cd expo-3-
 ```
 2. Install dependencies:
 ```sh
-$ yarn
+$ yarn 
 ```
 
 ##### Running/Development
 1. Build and run iOS app
 ```sh
-$ yarn ios
+$ yarn start
 ```
-After build is finished just run native app
-2. Build and run Android app
-```sh
-$ yarn android
-```
-After build is finished just run native app
-3. Clean cache
-```sh
-$ yarn clean
-```
+2. then you can scan qr code from terminal 
+be sure your phone and computer are using the same wifi network 
 ##### Running Tests
 1. Run project tests
 ```sh
