@@ -1,8 +1,9 @@
 import React from 'react'
-import { Platform, Text, View } from 'react-native'
+import { Platform, Text, View, Modal, TouchableHighlight } from 'react-native'
 import {
   CurrentWeatherInfo,
-  WeatherEventListElement
+  WeatherEventListElement,
+  AddEventModal,
 } from '../../components'
 import styles from './HomeScreen.styles'
 import { Constants, Location, Permissions } from 'expo';
@@ -21,6 +22,7 @@ class HomeScreen extends React.Component {
       location: null,
       city: null,
       errorMessage: null,
+      isModalVisible: false,
     };
   }
 
@@ -63,6 +65,8 @@ class HomeScreen extends React.Component {
     }
   }
 
+  setModalVisible = isVisible => this.setState({ isModalVisible: isVisible });
+
   render() {
     let city = 'Waiting..';
     if (this.state.errorMessage) {
@@ -91,9 +95,13 @@ class HomeScreen extends React.Component {
             headerInfo='Tuesday'
             imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
             footerInfo='25 *C'
-            onPressAdd={() => this.props.navigation.navigate('AddEvent')}
+            // onPressAdd={() => this.props.navigation.navigate('AddEvent')}
+            onPressAdd={() => this.setModalVisible(true)}
           />
         </View>
+        <AddEventModal 
+          isVisible={this.state.isModalVisible} 
+          closeModal={() => this.setModalVisible(false)}/>
       </View>
     )
   }
