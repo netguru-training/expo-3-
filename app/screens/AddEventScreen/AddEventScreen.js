@@ -1,8 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, TextInput } from 'react-native'
 import {
   CurrentWeatherInfo,
-  WeatherEventListElement
+  WeatherEventListElement,
+  AddEventForm
 } from '../../components'
 import styles from './AddEventScreen.styles'
 
@@ -16,24 +17,7 @@ const AddEventScreen = () => {
     <View
       style={containerStyle}
     >
-      <View
-        style={currentWeatherContainerStyle}
-      >
-        <CurrentWeatherInfo
-          headerInfo='NO WAY'
-          imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-          footerInfo='25 *C'
-        />
-      </View>
-      <View
-        style={containerStyle}
-      >
-        <WeatherEventListElement
-          headerInfo='Tuesday'
-          imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-          footerInfo='25 *C'
-        />
-      </View>
+      <AddEventForm date='aaaa'/>
     </View>
   )
 }
