@@ -1,42 +1,103 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Platform, Text, View } from 'react-native'
 import {
   CurrentWeatherInfo,
   WeatherEventListElement
 } from '../../components'
 import styles from './HomeScreen.styles'
+import { Constants, Location, Permissions } from 'expo';
+
 
 const {
   containerStyle,
-  currentWeatherContainerStyle
+  currentWeatherContainerStyle,
+  cityNameStyle
 } = styles
 
-const HomeScreen = (props) => {
-  return (
-    <View
-      style={containerStyle}
-    >
-      <View
-        style={currentWeatherContainerStyle}
-      >
-        <CurrentWeatherInfo
-          headerInfo='Monday'
-          imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-          footerInfo='25 *C'
-        />
-      </View>
+class HomeScreen extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      location: null,
+      city: null,
+      errorMessage: null,
+    };
+  }
+
+  componentDidMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync().then(()=>this._getCityAsync());
+
+    }
+  }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location });
+  };
+
+  _getCityAsync = async () => {
+    if (this.state.errorMessage) {
+      text = this.state.errorMessage;
+    } else if (this.state.location) {
+      url=`http://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.location.coords.latitude},${this.state.location.coords.longitude}&sensor=true`;
+      fetch(url)
+        .then((resp) => resp.json())
+        .then((data) => {
+          var city = data.results.filter(function( obj ) {
+            return obj.types.indexOf("administrative_area_level_2") > -1;
+          })[0].address_components[1].long_name;
+          this.setState({ city});
+        })
+    }
+  }
+
+  render() {
+    let city = 'Waiting..';
+    if (this.state.errorMessage) {
+      city = this.state.errorMessage;
+    } else if (this.state.location) {
+      city = this.state.city;
+    }
+    return (
       <View
         style={containerStyle}
       >
-        <WeatherEventListElement
-          headerInfo='Tuesday'
-          imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-          footerInfo='25 *C'
-          onPressAdd={() => props.navigation.navigate('AddEvent')}
-        />
+        <Text style={cityNameStyle}>{city}</Text>
+        <View
+          style={currentWeatherContainerStyle}
+        >
+          <CurrentWeatherInfo
+            headerInfo='Monday'
+            imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
+            footerInfo='25 *C'
+          />
+        </View>
+        <View
+          style={containerStyle}
+        >
+          <WeatherEventListElement
+            headerInfo='Tuesday'
+            imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
+            footerInfo='25 *C'
+            onPressAdd={() => props.navigation.navigate('AddEvent')}
+          />
+        </View>
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 export default HomeScreen
