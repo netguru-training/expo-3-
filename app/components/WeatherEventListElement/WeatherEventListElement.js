@@ -26,7 +26,6 @@ const WeatherEventListElement = ({
     <View
       style={containerStyle}
     >
-      
       <TouchableOpacity
         style={currentWeatherEventContainerStyle}
       >
