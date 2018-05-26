@@ -32,31 +32,28 @@ class WeatherEventListElement extends React.PureComponent {
         <TouchableOpacity
           style={currentWeatherEventContainerStyle}
         >
-          <CurrentWeatherInfo
-            headerInfo={headerInfo}
-            imageUrl={imageUrl}
-            footerInfo={footerInfo}
-            rowDirection
-          />
-          <Text
-            style={currentEventsNumberStyle}
+          <TouchableOpacity
+            style={currentWeatherEventContainerStyle}
           >
             {eventsNumberInfo}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={addEventContainerStyle}
-          onPress={this.fetchData}
+          onPress={() => onPressAdd()}
         >
           <Text
             style={plusStyle}
           >
-            +
-          </Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
+            <Text
+              style={plusStyle}
+            >
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )
+   }
 }
 
 WeatherEventListElement.propTypes = {
