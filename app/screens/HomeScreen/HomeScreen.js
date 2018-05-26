@@ -15,7 +15,6 @@ const {
 } = styles
 
 class HomeScreen extends React.Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -92,7 +91,7 @@ class HomeScreen extends React.Component {
             headerInfo='Tuesday'
             imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
             footerInfo='25 *C'
-            onPressAdd={() => props.navigation.navigate('AddEvent')}
+            onPressAdd={() => this.props.navigation.navigate('AddEvent')}
           />
         </View>
       </View>
