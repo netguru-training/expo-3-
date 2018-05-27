@@ -1,59 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 import { View, FlatList, Text } from 'react-native'
 import { WeatherEventListElement } from '../'
 import styles from './DayList.styles'
-
-// Mock data
-const data = [
-  {
-    date: '2018-05-27',
-    dayName: 'Sunday',
-    temp: 25,
-    taskCount: 3
-  },
-  {
-    date: '2018-05-28',
-    dayName: 'Monday',
-    temp: 30,
-    taskCount: 0
-  },
-  {
-    date: '2018-05-29',
-    dayName: 'Tuesday',
-    temp: 32,
-    taskCount: 2
-  },
-  {
-    date: '2018-05-30',
-    dayName: 'Wednesday',
-    temp: 23,
-    taskCount: 1
-  },
-  {
-    date: '2018-05-31',
-    dayName: 'Thursday',
-    temp: 25,
-    taskCount: 0
-  },
-  {
-    date: '2018-06-01',
-    dayName: 'Friday',
-    temp: 28,
-    taskCount: 0
-  },
-  {
-    date: '2018-06-02',
-    dayName: 'Saturday',
-    temp: 15,
-    taskCount: 0
-  }
-]
 
 class DayList extends React.Component {
 
   constructor(props) {
     super(props)
+  }
+
+  makeFlatList(events, weather) {
+    const dateToDayName = date => {
+      return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date(date).getDay()]
+    }
+
+    return _.map(weather, day => ({
+      date: day.datetime,
+      dayName: dateToDayName(day.datetime),
+      temp: day.temp,
+      taskCount: events[day.datetime].length
+    }))
   }
 
   renderItem = ({item}) => {
@@ -72,6 +40,8 @@ class DayList extends React.Component {
   }
 
   render() {
+    const data = this.makeFlatList(this.props.events, this.props.weather);
+    if (_.isEmpty(data)) return null;
     return (
       <FlatList
         ListHeaderComponent={this.props.header}

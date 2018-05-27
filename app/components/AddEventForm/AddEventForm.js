@@ -13,6 +13,8 @@ const {
   dateText,
   dateTextContainer,
   dateTextItem,
+  container,
+  doneButton,
 } = styles
 
 class AddEventForm extends React.PureComponent {
@@ -48,6 +50,14 @@ class AddEventForm extends React.PureComponent {
     this.props.closeModal();
   }
 
+  getMonthName = () => {
+    var month = new Date(this.date).getMonth();    
+  return isNaN(month) ? null : 
+      ['January', 'February', 'March', 'April', 'May', 
+      'June', 'July', 'August', 'September', 'October', 
+      'November', 'December'][month];
+  }
+
   render() {
     return (
       <View>
@@ -56,25 +66,28 @@ class AddEventForm extends React.PureComponent {
   
         <FormLabel>Description</FormLabel>
         <FormInput onChangeText={this.handleDescription} />
-        
-        <View style={dateTextContainer}>
-          <View style={dateTextItem}>
-            <Text style={dateText}>{this.date.getUTCDate()}</Text>
-          </View>
-          <View style={dateTextItem}>
-            <Text style={dateText}>{this.date.toLocaleString('locale', { month: "short" })}</Text>
-          </View>
-          <View style={dateTextItem}>
-            <Text style={dateText}>{this.date.getUTCFullYear()}</Text>
+
+        <View style={container}>
+
+          <View style={dateTextContainer}>
+            <View style={dateTextItem}>
+              <Text style={dateText}>{this.date.getUTCDate()}</Text>
+            </View>
+            <View style={dateTextItem}>
+              <Text style={dateText}>{this.getMonthName()}</Text>
+            </View>
+            <View style={dateTextItem}>
+              <Text style={dateText}>{this.date.getUTCFullYear()}</Text>
+            </View>
           </View>
         </View>
-  
+
         <Button
-          style={{marginTop: 40}}
-          backgroundColor={'#5096fc'}
-          onPress={this.onDoneButtonClick}
-          title="Done"
-        />
+            style={doneButton}
+            backgroundColor={'#5096fc'}
+            onPress={this.onDoneButtonClick}
+            title="Done"
+          />
         
       </View>
     )

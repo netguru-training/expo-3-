@@ -35,6 +35,7 @@ class AddEventModal extends React.PureComponent {
               <View style={headerContent}>
                 <Text style={headerTitle}> Create New Task </Text>
                 <TouchableHighlight
+                  style={{height: 40, width: 40, alignItems: 'center', justifyContent: 'center'}}
                   onPress={() => {
                     this.props.closeModal();
                   }}>
