@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { Text, View, StyleSheet, TextInput, Button, ListView, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Text, View, StyleSheet, TextInput, Button, ListView } from 'react-native';
+
 import { Constants } from 'expo';
 import {
   EventListItem,
+  WeatherHint
 } from '../../components'
 import styles from './EventsScreen.styles'
+import { toggleEvent } from '../../actions/events';
+
 
 const getEventsForDay = (state, props) => {
   const { navigation: { state: { params: { date } } } } = props;
@@ -14,26 +18,29 @@ const getEventsForDay = (state, props) => {
 }
 
 class EventsScreen extends Component {
-  toggleEvent = () => {
-
+  _handleToggleEvent = (date,id) => {
+    console.log('HELLLO',date,id);
+    this.props.toggleEvent(date, id);
   }
 
   render() {
     const date = this.props.navigation.state.params.date;//navigation.getParam('itemId', 'NO-ID');
     const eventsList = this.props.eventsForDay.map((event, index) => {
-      const { id, data: { description, title, isDone } } = event;
+      const { id, description, title, isDone } = event;
       return (
-        <EventListItem key={index} isDone={isDone} description={description} toggleEvent={this.toggleEvent}>
+        <EventListItem key={index} isDone={isDone} description={description} onPressCheckbox={() => this._handleToggleEvent(date,event.id) }>
           {title}
         </EventListItem>
     )})
     return (
-      <View>
-        <View>
-          <Text>{date}</Text>
+      <ScrollView>
+        <View style={styles.headerStyle}>
+          <Text style={styles.headerTextStyle}>{date}</Text>
         </View>
+        <WeatherHint date={new Date(date)}></WeatherHint>
+
         {eventsList}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -46,4 +53,4 @@ EventsScreen.propTypes = {
   eventsForDay: PropTypes.object.isRequired
 }
 
-export default connect(mapStateToProps)(EventsScreen)
+export default connect(mapStateToProps, {toggleEvent})(EventsScreen)

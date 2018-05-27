@@ -20,3 +20,7 @@ export const getKeyDateTime = (date) => {
   const year = formatDateNumber(date.getFullYear());
   return [year, month, day].join('-');
 }
+
+export const getIconUrl = (icon) => {
+  return `https://www.weatherbit.io/static/img/icons/${icon}.png`;
+}

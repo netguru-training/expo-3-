@@ -96,7 +96,7 @@ class HomeScreen extends React.Component {
     } else if (this.state.location) {
       city = this.state.city;
     }
-    return (  
+    return (
       <View
         style={containerStyle}
       >

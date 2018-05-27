@@ -10,11 +10,9 @@ const generateState = () => {
       ...acc,
       [datetime]: [{
         id: Math.random(),
-        data: {
-          title: `${Math.random()}`,
-          description: `${Math.random()}`,
-          isDone: false
-        }
+        title: `${Math.random()}`,
+        description: `${Math.random()}`,
+        isDone: false
       }]
     }
   }
@@ -26,21 +24,26 @@ const initialState = generateState();
 
 const filterAndToggleEvent = (events, id) => {
   const restEvents = events.filter((item) => item.id !== id);
-  const event = events.filter(item => item.id == id);
-  return [...restEvents, { ...event, isDone: !event.isDone}];
+  const event = events.filter(item => item.id === id)[0];
+  if (event) {
+    return [...restEvents, { ...event, isDone: !event.isDone}];
+  }
+  return [...restEvents];
 }
 
 const events = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.ADD_EVENT: {
-    const { day, data } = action.payload
+      case ActionTypes.ADD_EVENT: {
+      const { day, data: { description, title } } = action.payload
       return {
         ...state,
         [day]: [
           ...state[day],
           {
             id: Math.random(),
-            data
+            description,
+            title,
+            isDone: false
           }
         ]
       }

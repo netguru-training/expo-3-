@@ -1,30 +1,28 @@
 const styles = {
   containerStyle: {
-    height: 65,
+    flexDirection: 'column',
+    margin: 10
+  },
+  itemStyle: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#F8F8F8',
   },
-  currentWeatherEventContainerStyle: {
-    flex: 5
+  checkboxStyle: {
+    height: 40,
+    width: 40
   },
-  currentEventsNumberStyle: {
-    textAlign: 'center',
-    fontSize: 12
+  nameStyle: {
+    height: 40,
+    lineHeight: 40
   },
-  addEventContainerStyle: {
-    flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'center'
-  },
-  plusStyle: {
-    fontSize: 25,
-    textAlign: 'center',
-    height: 35,
-    width: 35,
-    borderWidth: 1,
-    borderRadius: 18,
-    borderColor: 'black'
+  descStyle: {
+    height: 50,
+    padding: 10,
+    backgroundColor: '#FFFFFF',
+
   }
+
 }
 
 export default styles
