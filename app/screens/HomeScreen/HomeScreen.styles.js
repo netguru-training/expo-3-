@@ -7,7 +7,9 @@ const styles = {
     flex: 0.5
   },
   cityNameStyle: {
-    
+    margin: 10,
+    textAlign: 'center',
+    fontSize: 15
   }
 }
 
