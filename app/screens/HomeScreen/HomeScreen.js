@@ -106,6 +106,8 @@ class HomeScreen extends React.Component {
           goToEventListScreen={this.goToEventListScreen}
           goToAddEventScreen={this.goToAddEventScreen}
           header={this.getCurrentWeatherInfo()}
+          events={this.props.events}
+          weather={this.props.weather}
         />
 
         <AddEventModal
@@ -122,4 +124,11 @@ HomeScreen.propTypes = {
   fetchDailyWeather: PropTypes.func.isRequired
 }
 
-export default connect(null, { fetchDailyWeather })(HomeScreen)
+const mapStateToProps = (state) => {
+  return {
+    weather: state.weather,
+    events: state.events
+  }
+}
+
+export default connect(mapStateToProps, { fetchDailyWeather })(HomeScreen)

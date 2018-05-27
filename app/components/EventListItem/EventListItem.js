@@ -32,7 +32,7 @@ class EventListItem extends React.PureComponent {
             style={styles.checkboxStyle}
           />
           <TouchableOpacity
-            onPress={() => this.setState({isExtended: !this.state.isExtended})}
+            onPress={() => this.setState(({isExtended}) => ({ isExtended: !isExtended}))}
           >
             <Text style={styles.nameStyle}>{this.props.children}</Text>
 
