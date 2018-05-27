@@ -1,31 +1,40 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { View, Image, Text } from 'react-native'
+import { WeatherIcon } from '../'
+import _ from 'lodash';
+
 import styles from './WeatherHint.styles'
 import getHint from './hints.js'
+import { getKeyDateTime } from '../../commons';
 
-const WeatherHint = ({
-  weather, icon
-}) => {
-  const hint = getHint(weather);
-  if (!hint) return null;
+const weatherSelector = (state, props) => {
+  const keyDate = getKeyDateTime(props.date)  
+  const { weather } = state;
+  return weather[keyDate] || {};
+}
 
-  return (
-    <View style={styles.container}>
-      <Image
-        style={styles.icon}
-        source={{
-          uri: icon
-        }}
-      />
-      <Text style={styles.text}>
-        {hint}
-      </Text>
-    </View>
-  )
+class WeatherHint extends React.PureComponent {
+  
+  render() {
+    const { weather, icon, date } = this.props;
+    const hint = getHint(weather);
+    if (!hint) return null;
+    console.info(this.props);
+    return (
+      <View style={styles.container}>
+        <WeatherIcon icon={icon} />
+        <Text style={styles.text}>
+          {hint}
+        </Text>
+      </View>
+    )
+  }
 }
 
 WeatherHint.propTypes = {
+  date: PropTypes.object.isRequired,
   weather: PropTypes.shape({
     description: PropTypes.string,
     temp: PropTypes.number,
@@ -36,9 +45,12 @@ WeatherHint.propTypes = {
   icon: PropTypes.string.isRequired
 }
 
+const mapStateToProps = (state, props) => ({
+  weather: weatherSelector(state, props)
+})
+
 WeatherHint.defaultProps = {
-  weather: {},
   icon: ''
 }
 
-export default WeatherHint
+export default connect(mapStateToProps)(WeatherHint)

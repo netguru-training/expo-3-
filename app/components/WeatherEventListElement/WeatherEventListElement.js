@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
+
 import CurrentWeatherInfo from '../CurrentWeatherInfo/CurrentWeatherInfo'
 import styles from './WeatherEventListElement.styles'
 
@@ -16,7 +17,7 @@ const {
 class WeatherEventListElement extends React.PureComponent {
 
   render() {
-    const { 
+    const {
       imageUrl,
       eventsNumber,
       headerInfo,
@@ -26,12 +27,12 @@ class WeatherEventListElement extends React.PureComponent {
     } = this.props;
     const eventsNumberInfo = eventsNumber > 0 ?
       `You Have ${eventsNumber} events today` : 'You have no events today'
-    
+
     return (
         <View
           style={containerStyle}
         >
-          
+
           <TouchableOpacity
             style={currentWeatherEventContainerStyle}
             onPress={() => onPressViewEvents()}

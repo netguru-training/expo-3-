@@ -1,5 +1,6 @@
 const styles = {
     container: {
+        display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
