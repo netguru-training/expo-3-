@@ -44,7 +44,8 @@ class AddEventForm extends React.PureComponent {
 
   onDoneButtonClick = () => {
     const { title, description } = this.state;
-    this.props.addEvent(this.dateKey, { title, description }); 
+    this.props.addEvent(this.dateKey, { title, description });
+    this.props.closeModal();
   }
 
   render() {
