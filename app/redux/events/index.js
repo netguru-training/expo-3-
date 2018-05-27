@@ -28,6 +28,16 @@ const events = (state = initialState, action) => {
           data
         }
       }
+    case ActionTypes.TOGGLE_EVENT: {
+      const { day, id } = action.payload;
+      return {
+        ...state,
+        [day]: {
+          ...state[day],
+          isDone: !state[day].isDone
+        }
+      }
+    }
     default:
       return state
   }
