@@ -25,6 +25,7 @@ class EventsScreen extends Component {
   render() {
     const date = this.props.navigation.state.params.date;//navigation.getParam('itemId', 'NO-ID');
     // const eventsForDay = [{id: 12, name:"smthgg",description:"opsispisois", isDone:true},{id:13, name:"smthgg",description:"opsispisois", isDone:false}];
+    console.log(eventsForDay);
     const eventsList = this.props.eventsForDay.map((event, index) => {
       return (
         <EventListItem key={index} isDone={event.isDone} description={event.description} onPressCheckbox={() => toggleEvent(date,event.id) }>
