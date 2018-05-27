@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { View, FlatList, Text } from 'react-native'
 import { WeatherEventListElement } from '../'
 import styles from './DayList.styles'
+import { getIconUrl } from '../../commons';
 
 class DayList extends React.Component {
 
@@ -15,23 +16,24 @@ class DayList extends React.Component {
     const dateToDayName = date => {
       return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][new Date(date).getDay()]
     }
-
     return _.map(weather, day => ({
       date: day.datetime,
       dayName: dateToDayName(day.datetime),
       temp: day.temp,
-      taskCount: events[day.datetime].length
+      taskCount: events[day.datetime].length,
+      weather: weather[day.datetime]
     }))
   }
 
   renderItem = ({item}) => {
-
+    const { weather: { weather: { icon } = {}} = {}} = item;
+    const iconUrl = icon ? getIconUrl(icon) : '';
     return (
       <WeatherEventListElement
         date={item.date}
         headerInfo={item.dayName}
         eventsNumber={item.taskCount}
-        imageUrl='https://www.weatherbit.io/static/img/icons/t01d.png'
+        imageUrl={iconUrl}
         footerInfo={`${item.temp} °C`}
         onPressViewEvents={() => this.props.goToEventListScreen(item.date)}
         onPressAdd={() => this.props.goToAddEventScreen(item.date)}

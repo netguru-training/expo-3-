@@ -8,12 +8,7 @@ const generateState = () => {
     const datetime = getKeyDateTime(newDate)
     acc = {
       ...acc,
-      [datetime]: [{
-        id: Math.random(),
-        title: `${Math.random()}`,
-        description: `${Math.random()}`,
-        isDone: false
-      }]
+      [datetime]: []
     }
   }
 
