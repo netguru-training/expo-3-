@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Platform, Text, View, Modal, TouchableHighlight } from 'react-native'
+import PropTypes from 'prop-types'
 import {
   CurrentWeatherInfo,
   DayList,
@@ -7,6 +9,7 @@ import {
 } from '../../components'
 import styles from './HomeScreen.styles'
 import { Constants, Location, Permissions } from 'expo';
+import { fetchDailyWeather } from '../../actions/weather';
 
 
 const {
@@ -33,8 +36,9 @@ class HomeScreen extends React.Component {
         errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
       });
     } else {
-      this._getLocationAsync().then(()=>this._getCityAsync());
-
+      this._getLocationAsync()
+        .then(() => this._getCityAsync())
+        .then(() => this.props.fetchDailyWeather());
     }
   }
 
@@ -114,4 +118,8 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default HomeScreen
+HomeScreen.propTypes = {
+  fetchDailyWeather: PropTypes.func.isRequired
+}
+
+export default connect(null, { fetchDailyWeather })(HomeScreen)
