@@ -71,7 +71,7 @@ class HomeScreen extends React.Component {
   }
 
   goToAddEventScreen = (date) => {
-    this.props.navigation.navigate('AddEvent', { date })
+    this.setModalVisible(true)
   }
 
   getCurrentWeatherInfo() {

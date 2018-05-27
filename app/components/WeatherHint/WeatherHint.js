@@ -17,7 +17,7 @@ const weatherSelector = (state, props) => {
 
 class WeatherHint extends React.PureComponent {
   get iconUrl() {
-    const { weather: { weather: { icon } } } = this.props;
+    const { weather: { weather: { icon= '' } = {} } = {} } = this.props;
     return `https://www.weatherbit.io/static/img/icons/${icon}.png`
   }
 
