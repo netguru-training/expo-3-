@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import { HomeScreen, AddEventScreen, EventInfoScreen } from './app/screens'
+import { HomeScreen, AddEventScreen, EventsScreen } from './app/screens'
 import styles from './RootNavigator.styles'
 
 const { container } = styles
@@ -14,7 +14,7 @@ const Navigator = StackNavigator({
     screen: AddEventScreen
   },
   EventInfo: {
-    screen: EventInfoScreen
+    screen: EventsScreen
   }
 })
 

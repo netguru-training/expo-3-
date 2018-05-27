@@ -4,6 +4,8 @@ import AddEventForm from './AddEventForm/AddEventForm'
 import WeatherHint from './WeatherHint/WeatherHint'
 import WeatherIcon from './WeatherIcon/WeatherIcon'
 import AddEventModal from './AddEventModal/AddEventModal'
+import EventListItem from './EventListItem/EventListItem'
+
 
 export {
   CurrentWeatherInfo,
@@ -11,5 +13,6 @@ export {
   AddEventForm,
   WeatherHint,
   AddEventModal,
-  WeatherIcon
+  WeatherIcon,
+  EventListItem
 }
