@@ -1,11 +1,11 @@
 const styles = {
     small: {
         width: 40,
-        width: 40,
+        height: 40,
     },
     large: {
-        width: 200,
-        width: 200,
+        width: 300,
+        height: 300,
     }
 }
 

@@ -7,9 +7,11 @@ const weather = (state = {}, action) => {
     case ActionTypes.FETCH_WEATHER_SUCCESS:
       const { data } = action.payload;
       const newState = _.reduce(data, (acc, item, index) => {
+        const { datetime } = item;
+        const key = datetime || event;
         return {
           ...acc,
-          [index]: item
+          [key]: item
         }
       }, {})
       return newState

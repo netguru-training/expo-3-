@@ -1,14 +1,21 @@
 import ActionTypes from "../../actions/types";
+import { addDays, formatDateNumber, getKeyDateTime } from '../../commons';
 
-const initialState = {
-  1: [],
-  2: [],
-  3: [],
-  4: [],
-  5: [],
-  6: [],
-  7: []
+const generateState = () => {
+  let acc = {};
+  for (let i = 0; i < 7; i++) {
+    const newDate = addDays(i);
+    const datetime = getKeyDateTime(newDate)
+    acc = {
+      ...acc,
+      [datetime]: []
+    }
+  }
+
+  return acc;
 }
+
+const initialState = generateState();
 
 const events = (state = initialState, action) => {
   switch (action.type) {
@@ -16,7 +23,10 @@ const events = (state = initialState, action) => {
     const { day, data } = action.payload
       return {
         ...state,
-        [day]: data
+        [day]: {
+          id: Math.random(),
+          data
+        }
       }
     default:
       return state
