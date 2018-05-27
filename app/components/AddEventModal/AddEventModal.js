@@ -11,7 +11,9 @@ const {
   modalContent,
   modalWrapper,
   headerTitle,
-  headerContent
+  headerContent,
+  container,
+  closeSign,
 } = styles
 
 class AddEventModal extends React.PureComponent {
@@ -34,7 +36,7 @@ class AddEventModal extends React.PureComponent {
                   onPress={() => {
                     this.props.closeModal();
                   }}>
-                  <Text style={{ fontSize: 20}}>X</Text>
+                  <Text style={closeSign}>X</Text>
                 </TouchableHighlight>
               </View>
               <AddEventForm date={new Date()}/>
