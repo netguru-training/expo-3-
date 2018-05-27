@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { Text, View, StyleSheet, TextInput, Button, ListView } from 'react-native';
 import { Constants } from 'expo';
 import {
   EventListItem,
 } from '../../components'
 import styles from './EventsScreen.styles'
+
+const getEventsForDay = (state, props) => {
+  const { navigation: { state: { params: { date } } } } = props;
+  console.info(date);
+  console.info(state)
+  return state.events[date];
+}
 
 class EventsScreen extends Component {
 
@@ -54,14 +63,15 @@ class EventsScreen extends Component {
   }
 
   render() {
-    const date = '2018-05-12';//navigation.getParam('itemId', 'NO-ID');
-    const eventsForDay = [{id: 12, name:"smthgg",description:"opsispisois", isDone:true},{id:13, name:"smthgg",description:"opsispisois", isDone:false}];
-    const eventsList = eventsForDay.map((event, index) => {
+    const date = this.props.navigation.state.params.date;//navigation.getParam('itemId', 'NO-ID');
+    // const eventsForDay = [{id: 12, name:"smthgg",description:"opsispisois", isDone:true},{id:13, name:"smthgg",description:"opsispisois", isDone:false}];
+    const eventsList = this.props.eventsForDay.map((event, index) => {
       return (
         <EventListItem key={index} isDone={event.isDone} description={event.description} toggleEvent={this.toggleEvent}>
           {event.name}
         </EventListItem>
     )})
+    console.info(this.props);
     return (
       <View>
         <View>
@@ -122,4 +132,13 @@ class EventsScreen extends Component {
     );*/
   }
 }
-export default EventsScreen
+
+const mapStateToProps = (state, props) => ({
+  eventsForDay: getEventsForDay(state, props)
+})
+
+EventsScreen.propTypes = {
+  eventsForDay: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps)(EventsScreen)
