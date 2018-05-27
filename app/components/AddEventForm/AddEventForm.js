@@ -8,7 +8,7 @@ import styles from './AddEventForm.styles'
 import { addEvent } from '../../actions/events';
 
 const {
-  textLabel
+  textTitle
 } = styles
 
 class AddEventForm extends React.PureComponent {
@@ -35,14 +35,12 @@ class AddEventForm extends React.PureComponent {
 
   onDoneButtonClick = () => {
     const { title, description } = this.state;
-    this.props.addEvent(day, { title, description }); 
+    this.props.addEvent(this.date, { title, description }); 
   }
 
   render() {
     return (
       <View>
-        <Text style={textLabel}> You are adding event to the following date: {this.date} </Text>
-        
         <FormLabel>Title</FormLabel>
         <FormInput onChangeText={this.handleTitle} />
   

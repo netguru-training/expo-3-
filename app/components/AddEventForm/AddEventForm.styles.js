@@ -1,13 +1,11 @@
 const styles = {
-  textLabel: {
-    textAlign: 'center',
+  textTitle: {
+    textAlign: 'left',
     marginTop: 4,
+    marginLeft: 10,
     padding: 4,
-    backgroundColor: 'grey',
-    fontWeight: 'bold',
-    fontSize: 12,
-    lineHeight: 14,
-    color: 'white'
+    fontSize: 25,
+    lineHeight: 25,
   }
 }
 
