@@ -37,6 +37,7 @@ class EventsScreen extends Component {
         <View style={styles.headerStyle}>
           <Text style={styles.headerTextStyle}>{date}</Text>
         </View>
+        <WeatherHint date={new Date(date)}></WeatherHint>
 
         {eventsList}
       </ScrollView>
