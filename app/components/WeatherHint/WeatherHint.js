@@ -25,7 +25,7 @@ class WeatherHint extends React.PureComponent {
     const { weather, icon, date } = this.props;
     const hint = getHint(weather);
     if (!hint) return null;
-    console.info(this.props);
+
     return (
       <View style={styles.container}>
         <WeatherIcon icon={this.iconUrl} />
