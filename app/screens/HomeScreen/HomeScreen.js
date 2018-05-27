@@ -2,8 +2,8 @@ import React from 'react'
 import { Platform, Text, View, Modal, TouchableHighlight } from 'react-native'
 import {
   CurrentWeatherInfo,
-  WeatherEventListElement,
-  AddEventModal,
+  DayList,
+  AddEventModal
 } from '../../components'
 import styles from './HomeScreen.styles'
 import { Constants, Location, Permissions } from 'expo';
@@ -66,7 +66,24 @@ class HomeScreen extends React.Component {
     }
   }
 
+  goToEventListScreen = (date) => {
+    this.props.navigation.navigate('EventInfo', { date })
+  }
+
+  goToAddEventScreen = (date) => {
+    this.props.navigation.navigate('AddEvent', { date })
+  }
+
+  getCurrentWeatherInfo() {
+    return (<CurrentWeatherInfo
+      headerInfo='Monday'
+      imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
+      footerInfo='25 *C'
+    />)
+  }
+
   setModalVisible = isVisible => this.setState({ isModalVisible: isVisible });
+
 
   render() {
     let city = 'Waiting..';
@@ -75,35 +92,23 @@ class HomeScreen extends React.Component {
     } else if (this.state.location) {
       city = this.state.city;
     }
-    return (
+    return (  
       <View
         style={containerStyle}
       >
         <Text style={cityNameStyle}>{city}</Text>
-        <View
-          style={currentWeatherContainerStyle}
-        >
-          <CurrentWeatherInfo
-            headerInfo='Monday'
-            imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-            footerInfo='25 *C'
-          />
-        </View>
-        <View
-          style={containerStyle}
-        >
-          <WeatherEventListElement
-            headerInfo='Tuesday'
-            imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
-            footerInfo='25 *C'
-            onPressInfo={() => this.props.navigation.navigate('EventInfo')}
-            onPressAdd={() => this.setModalVisible(true)}
-          />
-        </View>
+
+        <DayList
+          goToEventListScreen={this.goToEventListScreen}
+          goToAddEventScreen={this.goToAddEventScreen}
+          header={this.getCurrentWeatherInfo()}
+        />
+
         <AddEventModal
           date={this.state.date}
           isVisible={this.state.isModalVisible}
           closeModal={() => this.setModalVisible(false)}/>
+
       </View>
     )
   }
