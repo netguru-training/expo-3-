@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, Button, ListView } from 'react-native';
 import { Constants } from 'expo';
+import styles from './EventInfoScreen.styles'
 
-export default class App extends Component {
+class EventInfoScreen extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -94,3 +95,4 @@ export default class App extends Component {
     );
   }
 }
+export default EventInfoScreen
