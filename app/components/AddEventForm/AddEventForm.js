@@ -6,6 +6,7 @@ import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elemen
 
 import styles from './AddEventForm.styles'
 import { addEvent } from '../../actions/events';
+import { getKeyDateTime } from '../../commons';
 
 const {
   textTitle
@@ -20,9 +21,10 @@ class AddEventForm extends React.PureComponent {
     }
   }
 
-  get date() {
+  get dateKey() {
     const { date } = this.props;
-    return date.toUTCString();
+    console.info(getKeyDateTime(date))
+    return getKeyDateTime(date);
   }
 
   handleTitle = title => {
@@ -35,7 +37,7 @@ class AddEventForm extends React.PureComponent {
 
   onDoneButtonClick = () => {
     const { title, description } = this.state;
-    this.props.addEvent(this.date, { title, description }); 
+    this.props.addEvent(this.dateKey, { title, description }); 
   }
 
   render() {
@@ -61,6 +63,10 @@ AddEventForm.propTypes = {
   date: PropTypes.object.isRequired,
   
   addEvent: PropTypes.func.isRequired
+}
+
+AddEventForm.defaultProps = {
+  date: new Date()
 }
 
 export default connect(null, { addEvent })(AddEventForm);

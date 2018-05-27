@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
+
 import CurrentWeatherInfo from '../CurrentWeatherInfo/CurrentWeatherInfo'
 import styles from './WeatherEventListElement.styles'
 import { fetchDailyWeather } from '../../actions/weather'
@@ -15,7 +16,10 @@ const {
 } = styles
 
 class WeatherEventListElement extends React.PureComponent {
-  fetchData = () => this.props.fetchDailyWeather()
+
+  componentDidMount() {
+    this.props.fetchDailyWeather()
+  }
 
   render() {
     const {

@@ -6,6 +6,7 @@ import { View, TextInput, Image, Alert, Button, Text, Modal, TouchableHighlight 
 import styles from './AddEventModal.styles'
 import { addEvent } from '../../actions/events';
 import AddEventForm from '../AddEventForm/AddEventForm';
+import WeatherHint from '../WeatherHint/WeatherHint'
 
 const {
   modalContent,
@@ -27,6 +28,7 @@ class AddEventModal extends React.PureComponent {
             alert('Modal has been closed.');
           }}>
           <View style={modalWrapper}>
+          <WeatherHint date={this.props.date} />
             <View style={modalContent}>
               <View style={headerContent}>
                 <Text style={headerTitle}> Create New Task </Text>
@@ -47,7 +49,12 @@ class AddEventModal extends React.PureComponent {
 }
 
 AddEventModal.propTypes = {
+  date: PropTypes.object.isRequired,
   isVisible: PropTypes.bool.isRequired
+}
+
+AddEventModal.defaultProps = {
+  date: new Date()
 }
 
 export default AddEventModal;

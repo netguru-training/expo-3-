@@ -1,27 +1,29 @@
 import ActionTypes from "../../actions/types";
+import { addDays, formatDateNumber, getKeyDateTime } from '../../commons';
 
-function addDays(days) {
-  // 86400000 - one day in miliseconds
-  var ms = new Date().getTime() + (86400000 * days);
-  return new Date(ms);
-}
+// const addDays = (days) => {
+//   // 86400000 - one day in miliseconds
+//   var ms = new Date().getTime() + (86400000 * days);
+//   return new Date(ms);
+// }
 
-const formatDateNumber = (date) => {
-  const stringDate = `${date}`;
-  if (stringDate.length == 1) {
-    return `0${stringDate}`;
-  }
-  return stringDate;
-}
+// const formatDateNumber = (date) => {
+//   const stringDate = `${date}`;
+//   if (stringDate.length == 1) {
+//     return `0${stringDate}`;
+//   }
+//   return stringDate;
+// }
 
 const generateState = () => {
   let acc = {};
   for (let i = 0; i < 7; i++) {
     const newDate = addDays(i);
-    const day = formatDateNumber(newDate.getDate());
-    const month = formatDateNumber(newDate.getMonth() + 1);
-    const year = formatDateNumber(newDate.getFullYear());
-    const datetime = [year, month, day].join('-');
+    const datetime = getKeyDateTime(newDate)
+    // const day = formatDateNumber(newDate.getDate());
+    // const month = formatDateNumber(newDate.getMonth() + 1);
+    // const year = formatDateNumber(newDate.getFullYear());
+    // const datetime = [year, month, day].join('-');
     acc = {
       ...acc,
       [datetime]: []

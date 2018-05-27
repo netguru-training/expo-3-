@@ -23,6 +23,7 @@ class HomeScreen extends React.Component {
       city: null,
       errorMessage: null,
       isModalVisible: false,
+      date: new Date()
     };
   }
 
@@ -100,6 +101,7 @@ class HomeScreen extends React.Component {
           />
         </View>
         <AddEventModal
+          date={this.state.date}
           isVisible={this.state.isModalVisible}
           closeModal={() => this.setModalVisible(false)}/>
       </View>
