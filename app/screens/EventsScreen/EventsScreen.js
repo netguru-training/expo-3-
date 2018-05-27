@@ -49,7 +49,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 EventsScreen.propTypes = {
-  eventsForDay: PropTypes.object.isRequired
+  eventsForDay: PropTypes.array.isRequired
 }
 
 export default connect(mapStateToProps, {toggleEvent})(EventsScreen)
