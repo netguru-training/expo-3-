@@ -30,8 +30,8 @@ class AddEventModal extends React.PureComponent {
             alert('Modal has been closed.');
           }}>
           <View style={modalWrapper}>
-          <WeatherHint date={this.props.date} />
             <View style={modalContent}>
+              <WeatherHint date={this.props.date} />
               <View style={headerContent}>
                 <Text style={headerTitle}> Create New Task </Text>
                 <TouchableHighlight
@@ -41,7 +41,9 @@ class AddEventModal extends React.PureComponent {
                   <Text style={closeSign}>X</Text>
                 </TouchableHighlight>
               </View>
-              <AddEventForm date={new Date()}/>
+              <AddEventForm 
+                date={new Date()}
+                closeModal={this.props.closeModal}/>
             </View>
           </View>
         </Modal>
