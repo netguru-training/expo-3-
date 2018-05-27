@@ -9,5 +9,6 @@ export const addEvent = (day, data) => dispatch => {
 }
 
 export const toggleEvent = (day, id) => dispatch => {
+  console.log("START AKCJA");
   return dispatch(toggleEventAction(day, id));
 }
