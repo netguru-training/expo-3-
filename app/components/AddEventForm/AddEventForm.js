@@ -1,15 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { View, TextInput, Image, Alert, Button, Text } from 'react-native'
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { View, TextInput, Image, Alert, Text } from 'react-native'
+import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements'
 
 import styles from './AddEventForm.styles'
 import { addEvent } from '../../actions/events';
 import { getKeyDateTime } from '../../commons';
 
 const {
-  textTitle
+  textTitle,
+  dateText,
+  dateTextContainer,
+  dateTextItem,
 } = styles
 
 class AddEventForm extends React.PureComponent {
@@ -23,7 +26,6 @@ class AddEventForm extends React.PureComponent {
 
   get dateKey() {
     const { date } = this.props;
-    console.info(getKeyDateTime(date))
     return getKeyDateTime(date);
   }
 
@@ -48,8 +50,22 @@ class AddEventForm extends React.PureComponent {
   
         <FormLabel>Description</FormLabel>
         <FormInput onChangeText={this.handleDescription} />
+        
+        <View style={dateTextContainer}>
+          <View style={dateTextItem}>
+            <Text style={dateText}>{this.date.getUTCDate()}</Text>
+          </View>
+          <View style={dateTextItem}>
+            <Text style={dateText}>{this.date.toLocaleString('locale', { month: "short" })}</Text>
+          </View>
+          <View style={dateTextItem}>
+            <Text style={dateText}>{this.date.getUTCFullYear()}</Text>
+          </View>
+        </View>
   
         <Button
+          style={{marginTop: 40}}
+          backgroundColor={'#5096fc'}
           onPress={this.onDoneButtonClick}
           title="Done"
         />
