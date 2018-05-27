@@ -8,7 +8,14 @@ const generateState = () => {
     const datetime = getKeyDateTime(newDate)
     acc = {
       ...acc,
-      [datetime]: []
+      [datetime]: [{
+        id: Math.random(),
+        data: {
+          title: `${Math.random()}`,
+          description: `${Math.random()}`,
+          isDone: false
+        }
+      }]
     }
   }
 
@@ -25,7 +32,7 @@ const filterAndToggleEvent = (events, id) => {
 
 const events = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.ADD_EVENT:
+    case ActionTypes.ADD_EVENT: {
     const { day, data } = action.payload
       return {
         ...state,
@@ -37,6 +44,7 @@ const events = (state = initialState, action) => {
           }
         ]
       }
+    }
     case ActionTypes.TOGGLE_EVENT: {
       const { day, id } = action.payload;
       return {
