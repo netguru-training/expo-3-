@@ -20,6 +20,7 @@ class DayList extends React.Component {
       date: day.datetime,
       dayName: dateToDayName(day.datetime),
       temp: day.temp,
+      icon: `https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`,
       taskCount: events[day.datetime].length
     }))
   }
@@ -31,7 +32,7 @@ class DayList extends React.Component {
         date={item.date}
         headerInfo={item.dayName}
         eventsNumber={item.taskCount}
-        imageUrl='https://www.weatherbit.io/static/img/icons/t01d.png'
+        imageUrl={item.icon}
         footerInfo={`${item.temp} °C`}
         onPressViewEvents={() => this.props.goToEventListScreen(item.date)}
         onPressAdd={() => this.props.goToAddEventScreen(item.date)}
