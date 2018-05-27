@@ -95,12 +95,12 @@ class HomeScreen extends React.Component {
             headerInfo='Tuesday'
             imageUrl='https://www.freeiconspng.com/uploads/weather-icon-png-16.png'
             footerInfo='25 *C'
-            // onPressAdd={() => this.props.navigation.navigate('AddEvent')}
+            onPressInfo={() => this.props.navigation.navigate('EventInfo')}
             onPressAdd={() => this.setModalVisible(true)}
           />
         </View>
-        <AddEventModal 
-          isVisible={this.state.isModalVisible} 
+        <AddEventModal
+          isVisible={this.state.isModalVisible}
           closeModal={() => this.setModalVisible(false)}/>
       </View>
     )

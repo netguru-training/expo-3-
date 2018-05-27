@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { View, Image, Text } from 'react-native'
+import { WeatherIcon } from '../'
 import styles from './WeatherHint.styles'
 import getHint from './hints.js'
 
@@ -12,12 +13,7 @@ const WeatherHint = ({
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.icon}
-        source={{
-          uri: icon
-        }}
-      />
+      <WeatherIcon icon={icon} />
       <Text style={styles.text}>
         {hint}
       </Text>
