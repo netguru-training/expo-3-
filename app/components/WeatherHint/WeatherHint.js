@@ -16,7 +16,11 @@ const weatherSelector = (state, props) => {
 }
 
 class WeatherHint extends React.PureComponent {
-  
+  get iconUrl() {
+    const { weather: { weather: { icon } } } = this.props;
+    return `https://www.weatherbit.io/static/img/icons/${icon}.png`
+  }
+
   render() {
     const { weather, icon, date } = this.props;
     const hint = getHint(weather);
@@ -24,7 +28,7 @@ class WeatherHint extends React.PureComponent {
     console.info(this.props);
     return (
       <View style={styles.container}>
-        <WeatherIcon icon={icon} />
+        <WeatherIcon icon={this.iconUrl} />
         <Text style={styles.text}>
           {hint}
         </Text>
