@@ -43,7 +43,7 @@ class AddEventModal extends React.PureComponent {
               </View>
               <AddEventForm 
                 date={new Date()}
-                closeModal={this.props.closeModal()}/>
+                closeModal={this.props.closeModal}/>
             </View>
           </View>
         </Modal>
