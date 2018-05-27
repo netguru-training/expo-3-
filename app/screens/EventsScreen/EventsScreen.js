@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, Button, ListView, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import _ from 'lodash';
 
 import { Constants } from 'expo';
 import {
@@ -25,7 +26,8 @@ class EventsScreen extends Component {
 
   render() {
     const date = this.props.navigation.state.params.date;//navigation.getParam('itemId', 'NO-ID');
-    const eventsList = this.props.eventsForDay.map((event, index) => {
+    const sorted = _.sortBy(this.props.eventsForDay, (event) => event.id)
+    const eventsList = sorted.map((event, index) => {
       const { id, description, title, isDone } = event;
       return (
         <EventListItem key={index} isDone={isDone} description={description} onPressCheckbox={() => this._handleToggleEvent(date,event.id) }>
