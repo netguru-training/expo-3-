@@ -18,6 +18,7 @@ class WeatherEventListElement extends React.PureComponent {
 
   render() {
     const {
+      date,
       imageUrl,
       eventsNumber,
       headerInfo,
@@ -65,6 +66,7 @@ class WeatherEventListElement extends React.PureComponent {
 }
 
 WeatherEventListElement.propTypes = {
+  date: PropTypes.string.isRequired,
   weatherIcon: PropTypes.object,
   imageUrl: PropTypes.string.isRequired,
   eventsNumber: PropTypes.number,

@@ -17,25 +17,31 @@ const generateState = () => {
 
 const initialState = generateState();
 
+const filterAndToggleEvent = (events, id) => {
+  const restEvents = events.filter((item) => item.id !== id);
+  const event = events.filter(item => item.id == id);
+  return [...restEvents, { ...event, isDone: !event.isDone}];
+}
+
 const events = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_EVENT:
     const { day, data } = action.payload
       return {
         ...state,
-        [day]: {
-          id: Math.random(),
-          data
-        }
+        [day]: [
+          ...state[day],
+          {
+            id: Math.random(),
+            data
+          }
+        ]
       }
     case ActionTypes.TOGGLE_EVENT: {
       const { day, id } = action.payload;
       return {
         ...state,
-        [day]: {
-          ...state[day],
-          isDone: !state[day].isDone
-        }
+        [day]: filterAndToggleEvent(state[day], id)
       }
     }
     default:

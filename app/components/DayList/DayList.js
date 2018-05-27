@@ -60,6 +60,7 @@ class DayList extends React.Component {
 
     return (
       <WeatherEventListElement
+        date={item.date}
         headerInfo={item.dayName}
         eventsNumber={item.taskCount}
         imageUrl='https://www.weatherbit.io/static/img/icons/t01d.png'
