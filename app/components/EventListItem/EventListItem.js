@@ -15,25 +15,30 @@ class EventListItem extends React.PureComponent {
       isExtended:false
     }
   }
+
   render() {
     let desc='';
     if(this.state.isExtended){
-      desc= <Text>{this.props.description}</Text>;
+      desc= <Text style={styles.descStyle}>{this.props.description}</Text>;
     }
     return (
-      <View>
-        <CheckBox
-          checkedIcon='dot-circle-o'
-          uncheckedIcon='circle-o'
-          checked={this.props.isDone}
-          onPress={this.props.toggleEvent}
-        />
-        <TouchableOpacity
-          onPress={() => this.setState({isExtended: !this.state.isExtended})}
-        >
-          <Text>{this.props.children}</Text>
-          {desc}
-        </TouchableOpacity>
+      <View style={styles.containerStyle}>
+        <View  style={styles.itemStyle}>
+          <CheckBox
+            checkedIcon='dot-circle-o'
+            uncheckedIcon='circle-o'
+            checked={this.props.isDone}
+            onPress={this.props.onPressCheckbox}
+            style={styles.checkboxStyle}
+          />
+          <TouchableOpacity
+            onPress={() => this.setState({isExtended: !this.state.isExtended})}
+          >
+            <Text style={styles.nameStyle}>{this.props.children}</Text>
+
+          </TouchableOpacity>
+        </View>
+        {desc}
       </View>
     )
   }
