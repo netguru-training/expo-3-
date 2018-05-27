@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 
 import CurrentWeatherInfo from '../CurrentWeatherInfo/CurrentWeatherInfo'
 import styles from './WeatherEventListElement.styles'
-import { fetchDailyWeather } from '../../actions/weather'
 
 const {
   containerStyle,
@@ -17,18 +16,14 @@ const {
 
 class WeatherEventListElement extends React.PureComponent {
 
-  componentDidMount() {
-    this.props.fetchDailyWeather()
-  }
-
   render() {
     const {
       imageUrl,
       eventsNumber,
       headerInfo,
       footerInfo,
-      onPressAdd,
-      onPressInfo
+      onPressViewEvents,
+      onPressAdd
     } = this.props;
     const eventsNumberInfo = eventsNumber > 0 ?
       `You Have ${eventsNumber} events today` : 'You have no events today'
@@ -40,7 +35,7 @@ class WeatherEventListElement extends React.PureComponent {
 
           <TouchableOpacity
             style={currentWeatherEventContainerStyle}
-            onPress={() => onPressInfo()}
+            onPress={() => onPressViewEvents()}
           >
             <CurrentWeatherInfo
               headerInfo={headerInfo}
@@ -70,13 +65,12 @@ class WeatherEventListElement extends React.PureComponent {
 }
 
 WeatherEventListElement.propTypes = {
+  weatherIcon: PropTypes.object,
   imageUrl: PropTypes.string.isRequired,
   eventsNumber: PropTypes.number,
   headerInfo: PropTypes.string,
   footerInfo: PropTypes.string,
-
-  onPressAdd: PropTypes.func,
-  fetchDailyWeather: PropTypes.func.isRequired
+  onPressAdd: PropTypes.func
 }
 
 WeatherEventListElement.defaultProps = {
@@ -85,4 +79,4 @@ WeatherEventListElement.defaultProps = {
   footerInfo: ''
 }
 
-export default connect(null, { fetchDailyWeather })(WeatherEventListElement)
+export default WeatherEventListElement
