@@ -24,6 +24,11 @@ class AddEventForm extends React.PureComponent {
     }
   }
 
+  get date() {
+    const { date } = this.props;
+    return date;
+  }
+
   get dateKey() {
     const { date } = this.props;
     return getKeyDateTime(date);
