@@ -1,4 +1,4 @@
-const API_KEY = '1d8088061caa452f88d7fba3169a7d6e';
+const API_KEY = '0422fa0f6c5542ef9dd6d841231736fa';
 const apiPath = `https://api.weatherbit.io/v2.0/forecast/daily`;
 const toQueryString = query => {
   return Object.entries(query).map(([key, value]) => `${key}=${value}`).join('&');
