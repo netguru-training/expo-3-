@@ -2,19 +2,19 @@ const styles = {
   containerStyle: {
     height: 65,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   currentWeatherEventContainerStyle: {
-    flex: 5
+    flex: 5,
   },
   currentEventsNumberStyle: {
     textAlign: 'center',
-    fontSize: 12
+    fontSize: 12,
   },
   addEventContainerStyle: {
     flex: 1,
     alignItems: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   plusStyle: {
     fontSize: 25,
@@ -23,8 +23,8 @@ const styles = {
     width: 35,
     borderWidth: 1,
     borderRadius: 18,
-    borderColor: 'black'
-  }
-}
+    borderColor: 'black',
+  },
+};
 
-export default styles
+export default styles;

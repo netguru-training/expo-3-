@@ -1,25 +1,14 @@
-import React from 'react'
-import { View, TextInput } from 'react-native'
-import {
-  CurrentWeatherInfo,
-  WeatherEventListElement,
-  AddEventForm
-} from '../../components'
-import styles from './AddEventScreen.styles'
+import React from 'react';
+import { View } from 'react-native';
+import { AddEventForm } from '../../components';
+import styles from './AddEventScreen.styles';
 
-const {
-  containerStyle,
-  currentWeatherContainerStyle
-} = styles
+const { containerStyle } = styles;
 
-const AddEventScreen = () => {
-  return (
-    <View
-      style={containerStyle}
-    >
-      <AddEventForm date={new Date()}/>
-    </View>
-  )
-}
+const AddEventScreen = () => (
+  <View style={containerStyle}>
+    <AddEventForm date={new Date()} />
+  </View>
+);
 
-export default AddEventScreen
+export default AddEventScreen;

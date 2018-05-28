@@ -1,7 +1,7 @@
 const styles = {
   containerStyle: {
     flexDirection: 'column',
-    margin: 10
+    margin: 10,
   },
   itemStyle: {
     flexDirection: 'row',
@@ -10,19 +10,17 @@ const styles = {
   },
   checkboxStyle: {
     height: 40,
-    width: 40
+    width: 40,
   },
   nameStyle: {
     height: 40,
-    lineHeight: 40
+    lineHeight: 40,
   },
   descStyle: {
     height: 50,
     padding: 10,
     backgroundColor: '#FFFFFF',
+  },
+};
 
-  }
-
-}
-
-export default styles
+export default styles;

@@ -1,12 +1,11 @@
-import CurrentWeatherInfo from './CurrentWeatherInfo/CurrentWeatherInfo'
-import WeatherEventListElement from './WeatherEventListElement/WeatherEventListElement'
-import AddEventForm from './AddEventForm/AddEventForm'
-import DayList from './DayList/DayList'
-import WeatherHint from './WeatherHint/WeatherHint'
-import WeatherIcon from './WeatherIcon/WeatherIcon'
-import AddEventModal from './AddEventModal/AddEventModal'
-import EventListItem from './EventListItem/EventListItem'
-
+import CurrentWeatherInfo from './CurrentWeatherInfo/CurrentWeatherInfo';
+import WeatherEventListElement from './WeatherEventListElement/WeatherEventListElement';
+import AddEventForm from './AddEventForm/AddEventForm';
+import DayList from './DayList/DayList';
+import WeatherHint from './WeatherHint/WeatherHint';
+import WeatherIcon from './WeatherIcon/WeatherIcon';
+import AddEventModal from './AddEventModal/AddEventModal';
+import EventListItem from './EventListItem/EventListItem';
 
 export {
   CurrentWeatherInfo,
@@ -16,5 +15,5 @@ export {
   WeatherHint,
   AddEventModal,
   WeatherIcon,
-  EventListItem
-}
+  EventListItem,
+};

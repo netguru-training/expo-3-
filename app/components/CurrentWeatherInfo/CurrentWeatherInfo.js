@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View, Text, Image } from 'react-native'
-import styles from './CurrentWeatherInfo.styles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, Text, Image } from 'react-native';
+import styles from './CurrentWeatherInfo.styles';
 
 const {
   container,
@@ -10,45 +10,28 @@ const {
   footerInfoStyle,
   imageStyle,
   textSmall,
-  imageStyleSmall
-} = styles
+  imageStyleSmall,
+} = styles;
 
-const CurrentWeatherInfo = ({
-  imageUrl, headerInfo, footerInfo, rowDirection
-}) => {
-  return (
-    <View
-      style={[container, rowDirection && containerRow]}
-    >
-      <Text
-        style={[headerInfoStyle, rowDirection && textSmall]}
-      >
-        {headerInfo}
-      </Text>
-      <Image
-        style={[imageStyle, rowDirection && imageStyleSmall]}
-        source={{ uri: imageUrl }}
-      />
-      <Text
-        style={[footerInfoStyle, rowDirection && textSmall]}
-      >
-        {footerInfo}
-      </Text>
-    </View>
-  )
-}
+const CurrentWeatherInfo = ({ imageUrl, headerInfo, footerInfo, rowDirection }) => (
+  <View style={[container, rowDirection && containerRow]}>
+    <Text style={[headerInfoStyle, rowDirection && textSmall]}>{headerInfo}</Text>
+    <Image style={[imageStyle, rowDirection && imageStyleSmall]} source={{ uri: imageUrl }} />
+    <Text style={[footerInfoStyle, rowDirection && textSmall]}>{footerInfo}</Text>
+  </View>
+);
 
 CurrentWeatherInfo.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   rowDirection: PropTypes.bool,
   headerInfo: PropTypes.string,
-  footerInfo: PropTypes.string
-}
+  footerInfo: PropTypes.string,
+};
 
 CurrentWeatherInfo.defaultProps = {
   rowDirection: false,
   headerInfo: '',
-  footerInfo: ''
-}
+  footerInfo: '',
+};
 
-export default CurrentWeatherInfo
+export default CurrentWeatherInfo;

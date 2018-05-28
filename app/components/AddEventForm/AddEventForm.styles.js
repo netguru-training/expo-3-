@@ -14,7 +14,7 @@ const styles = {
   },
   dateTextContainer: {
     height: 40,
-    flexDirection: 'row', 
+    flexDirection: 'row',
     padding: 10,
     justifyContent: 'space-between',
   },
@@ -30,9 +30,9 @@ const styles = {
     color: '#86939D',
   },
   doneButton: {
-    marginTop: 8, 
-    height: 40
-  }
-}
+    marginTop: 8,
+    height: 40,
+  },
+};
 
-export default styles
+export default styles;

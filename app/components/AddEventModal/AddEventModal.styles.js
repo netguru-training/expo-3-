@@ -27,13 +27,13 @@ const styles = {
   },
   container: {
     flex: 1,
-    flexDirection:'column', 
-    justifyContent:'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   closeSign: {
-    fontSize: 20, 
+    fontSize: 20,
     color: '#646f77',
   },
-}
+};
 
-export default styles
+export default styles;

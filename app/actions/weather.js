@@ -12,5 +12,5 @@ export const fetchDailyWeather = (params = {}) => dispatch => {
   return fetchApi(params)
     .then(res => res.json())
     .then(res => dispatch(fetchWeatherSuccess(res)))
-    .catch(err => dispatch(fetchWeatherFailure()))
-}
+    .catch(err => dispatch(fetchWeatherFailure(err)));
+};
